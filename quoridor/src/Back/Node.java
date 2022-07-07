@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public class Node {
     private final int x;
     private final int y;
-    ArrayList<Node> neighbors = new ArrayList<Node>();
-    ArrayList<Edge> edges = new ArrayList<Edge>();
+    public static ArrayList<Node> nodes = new ArrayList<Node>();
+    public ArrayList<Node> neighbors = new ArrayList<Node>();
+    public ArrayList<Edge> edges = new ArrayList<Edge>();
     private int playerishere;
     private int topvalue = 1;
 
@@ -14,13 +15,22 @@ public class Node {
         this.x = x;
         this.y = y;
     }
-
+    static Node none = new Node (-1, -1);
     public int getX() {
         return x;
     }
 
     public int getY() {
         return y;
+    }
+
+    public static Node getNodeByCoordinates(int x, int y){
+        for (Node n : nodes){
+            if (n.getX() == x && n.getY() == y){
+                return n;
+            }
+        }
+        return none;
     }
 
     @Override
@@ -43,7 +53,7 @@ public class Node {
     }
 
     public boolean islegalwalk(Node n) {
-        for (Node i : neighbors) {
+        for (Node i : this.neighbors) {
             if (i.equals(n)) return true;
         }
         return false;
