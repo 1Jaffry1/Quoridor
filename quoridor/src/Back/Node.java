@@ -1,9 +1,14 @@
 package Back;
 
+import java.util.ArrayList;
+
 public class Node {
     private final int x;
     private final int y;
-    private int player;
+    ArrayList<Node> neighbors = new ArrayList<Node>();
+    ArrayList<Edge> edges = new ArrayList<Edge>();
+    private int playerishere;
+    private int topvalue = 1;
 
     public Node(int x, int y) {
         this.x = x;
@@ -24,16 +29,27 @@ public class Node {
     }
 
     public int show() {
-        return 10 * x + y;
+        return 10 * y + x;
     }
 
     public static boolean tophaspath(Node n) {
-        if (n.player == 1) {
-            if (n.x == Board.getHeight() - 1) {
+        if (n.playerishere == 1) {
+            if (n.y == Board.getHeight() - 1)  //base case
                 return true;
-            }
-            else return(tophaspath(new Node(n.x, n.y+1)));
+            return tophaspath(n.moveupwards());
+//            return (tophaspath(new Node(n.x - 1, n.y)));
         }
         return false;
+    }
+
+    public boolean islegalwalk(Node n) {
+        for (Node i : neighbors) {
+            if (i.equals(n)) return true;
+        }
+        return false;
+    }
+
+    public Node moveupwards() {
+        return new Node(this.x, this.y + 1);
     }
 }
