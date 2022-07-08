@@ -1,8 +1,11 @@
 package Back;
 
+import java.util.ArrayList;
+
 public class Wall {
     private Node start;
     private String allign;
+    public ArrayList<Wall> wallsplaced = new ArrayList<>();
 
     public Wall(Node start, String allign) {
         this.start = start;
@@ -15,6 +18,9 @@ public class Wall {
 
     public String getAllign() {
         return allign;
+    }
+    public static boolean islegal(Wall wall){
+        return true;
     }
 
     public void removeEdge(Wall wall) {
