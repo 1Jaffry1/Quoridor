@@ -1,5 +1,7 @@
 package Back;
 
+import java.util.ArrayList;
+
 public class Run {
     public static void main(String[] args) {
         Board board = new Board();
@@ -26,6 +28,12 @@ public class Run {
                 }
             }
         }
+
+        //from file: import Arraylist(walls)
+        for (Wall wall : new ArrayList<Wall>()){  //change this to loaded array list
+            wall.placeWall();
+        }
+
 
     }
 }
