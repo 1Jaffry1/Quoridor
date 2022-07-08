@@ -4,6 +4,7 @@ public class Player {
     private int name;
     private final String color;
     private Node location;
+    private int wallsRemaining = 10;
 
     public Node getLocation() {
         return location;
@@ -34,5 +35,17 @@ public class Player {
     public int getName() {
         return name;
     }
+
+    public int getWallsRemaining() {
+        return wallsRemaining;
+    }
+
+    public void setWallsRemaining(int wallsRemaining) {
+        this.wallsRemaining = wallsRemaining;
+    }
+    public boolean haspath(){
+        return true;
+    }
 }
+
 
