@@ -3,17 +3,40 @@ package Back;
 import java.util.ArrayList;
 
 public class Wall {
-    private String name;
-    private Node start;
-    private String allign;
     public static ArrayList<Wall> wallsplaced = new ArrayList<>();
     //    default wall:
     public static Wall noWall = new Wall(Node.noNode, "v");
+    private String name = this.start.printPosition()+ this.allign;
+    private Node start;
+    private String allign;
 
     public Wall(Node start, String allign) {
         this.start = start;
         this.allign = allign;
-        if (islegal(this)) this.placeWall();
+        if (islegal(this)) this.placeWall(); //places wall as soon as it is built after checking that it is legal
+    }
+    public Wall(String name){
+        this.name = name;
+        String[] split = name.split("");
+        this.start = Node.getNodeByCoordinates(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
+        this.allign = split[2];
+        if (islegal(this)) this.placeWall(); //places wall as soon as it is built after checking that it is legal
+    }
+
+    public static boolean islegal(Wall wall) {
+        for (Wall w : wallsplaced)
+            if (wall.equals(w)) return false;
+        ArrayList<Node> tempnode = new ArrayList<>();
+        return true; //has work
+    }
+
+    public static Wall getWallByName(String name) {
+        for (Wall wall : wallsplaced) {
+            if (wall.name.equals(name)) {
+                return wall;
+            }
+        }
+        return noWall;
     }
 
     public Node getStart() {
@@ -22,10 +45,6 @@ public class Wall {
 
     public String getAllign() {
         return allign;
-    }
-
-    public static boolean islegal(Wall wall) {
-        return true;
     }
 
     public void placeWall() {
@@ -66,14 +85,5 @@ public class Wall {
             }
         }
         wallsplaced.add(this);
-    }
-
-    public static Wall getWallByName(String name) {
-        for (Wall wall : wallsplaced) {
-            if (wall.name.equals(name)) {
-                return wall;
-            }
-        }
-        return noWall;
     }
 }

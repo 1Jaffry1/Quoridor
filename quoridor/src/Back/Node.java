@@ -39,7 +39,7 @@ public class Node {
     }
 
     public int printPosition() {
-        return 10 * x + y;
+        return 10 * y + x;
     }
 
     public boolean hasPath(String n) { //temp placeholder
