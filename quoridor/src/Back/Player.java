@@ -5,16 +5,16 @@ import java.util.ArrayList;
 public class Player {
     public static Player noPlayer = new Player(-1, "none");
     public static ArrayList<Player> players = new ArrayList<>();
-    private final String role; //top or bottom
+    private final String goal; //top or bottom
     private int name;
     private Node location;
     private int wallsRemaining = 10;
 
 
-    public Player(int name, String role) {
+    public Player(int name, String goal) {
         this.name = name;
-        this.role = role;
-        if (role.equals( "top")){
+        this.goal = goal;
+        if (goal.equals( "top")){
             location = new Node(4);
         }
     }
@@ -49,8 +49,8 @@ public class Player {
         this.setLocation(location.moveLeft());
     }
 
-    public String getRole() {
-        return role;
+    public String getGoal() {
+        return goal;
     }
 
     public int getName() {
@@ -70,13 +70,13 @@ public class Player {
     }
 
     public boolean hasPath() {
-        return this.getLocation().hasPath(this.role);
+        return this.getLocation().hasPath(this.goal);
     }
 
     public boolean isLegalWalk(Node n) {
         for (Node i : this.getLocation().neighbors) {
-            if (i.equals(n) && !i.isPlayerIsHere()) return true;
-            else if (i.isPlayerIsHere() && (n.getX() == this.getLocation().getX() + 2 || n.getY() == this.getLocation().getY() + 2) && i.isNeighbor(n))
+            if (i.equals(n) && !i.isPlayerIsHere() && !this.getLocation().equals(n)) return true;
+            else if (i.isPlayerIsHere() && (n.getJ() == this.getLocation().getJ() + 2 || n.getI() == this.getLocation().getI() + 2) && i.isNeighbor(n))
                 return true;
 //            else if (i.isPlayerIsHere() )
         }
