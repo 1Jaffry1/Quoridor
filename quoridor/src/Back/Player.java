@@ -69,7 +69,7 @@ public class Player {
         this.wallsRemaining = wallsRemaining;
     }
 
-    public boolean haspath() {
+    public boolean hasPath() {
         return this.getLocation().hasPath(this.role);
     }
 

@@ -14,10 +14,12 @@ public class Node {
     public Node(int x, int y) {
         this.x = x;
         this.y = y;
+        nodes.add(this);
     }
     public Node(int m){
         this.y = m/10;
         this.x = m%10;
+        nodes.add(this);
     }
 
     public static Node getNodeByCoordinates(int x, int y) {
@@ -46,7 +48,7 @@ public class Node {
         return 10 * y + x;
     }
 
-    public boolean hasPath(String n) { //temp placeholder
+    public boolean hasPath(String n) {
         ArrayList<Node> visited = new ArrayList<>();
         visited.add(this);
         for (int i = 0; i < visited.size(); i++) {
@@ -56,14 +58,14 @@ public class Node {
         }
         if (n.equals("bottom")) {
             ArrayList<Node> bottom = new ArrayList<>();
-            for (int x = 0; x < 9; x++) bottom.add(getNodeByCoordinates(x, 8));
+            for (int x = 0; x < 9; x++) bottom.add(getNodeByCoordinates(x, 0));
             for (Node v : bottom) {
                 if (visited.contains(v)) return true;
             }
         }
         if (n.equals("top")) {
             ArrayList<Node> top = new ArrayList<>();
-            for (int x = 0; x < 9; x++) top.add(getNodeByCoordinates(x, 0));
+            for (int x = 0; x < 9; x++) top.add(getNodeByCoordinates(x, 8));
             for (Node v : top) {
                 if (visited.contains(v)) return true;
             }
@@ -73,19 +75,19 @@ public class Node {
 
 
     public Node moveUp() {
-        return new Node(this.x, this.y - 1);
+        return getNodeByCoordinates(this.x, this.y - 1);
     }
 
     public Node moveDown() {
-        return new Node(this.x, this.y + 1);
+        return getNodeByCoordinates(this.x, this.y + 1);
     }
 
     public Node moveRight() {
-        return new Node(this.x + 1, this.y);
+        return getNodeByCoordinates(this.x + 1, this.y);
     }
 
     public Node moveLeft() {
-        return new Node(this.x - 1, this.y);
+        return getNodeByCoordinates(this.x - 1, this.y);
     }
 
     public boolean isPlayerIsHere() {
