@@ -3,85 +3,121 @@ package Back;
 import java.util.ArrayList;
 
 public class Node {
-    private final int x;
-    private final int y;
     public static ArrayList<Node> nodes = new ArrayList<>();
-    public ArrayList<Node> neighbors = new ArrayList<>();
-    public ArrayList<Edge> edges = new ArrayList<>();
-    private boolean playerIsHere;
+    public static ArrayList<Node> topNodes = new ArrayList<>();
+    public static ArrayList<Node> bottomNodes = new ArrayList<>();
     static Node noNode = new Node(-2, -2);
+    private final int j;
+    private final int i;
+    public ArrayList<Node> visited = new ArrayList<>();
+    public ArrayList<Node> neighbors = new ArrayList<>();
+    //    public ArrayList<Edge> edges = new ArrayList<>();
+    private boolean playerIsHere;
 
-    public Node(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Node(int i, int j) {
+        this.j = j;
+        this.i = i;
+        nodes.add(this);
     }
 
-    public int getX() {
-        return x;
+    public Node(int m) {
+        this.i = m / 10;
+        this.j = m % 10;
+        nodes.add(this);
     }
 
-    public int getY() {
-        return y;
+    public static Node getNodeByName(int m) {
+        return getNodeByCoordinates(m / 10, m % 10);
     }
 
-    public static Node getNodeByCoordinates(int x, int y) {
+    public static Node getNodeByCoordinates(int i, int j) {
         for (Node n : nodes) {
-            if (n.getX() == x && n.getY() == y) {
+            if (n.getJ() == j && n.getI() == i) {
                 return n;
             }
         }
         return noNode;
     }
 
+    public int getJ() {
+        return j;
+    }
+
+    public int getI() {
+        return i;
+    }
+
     @Override
     public String toString() {
-        return x + "" + y;
+        return i + "" + j;
     }
 
-    public int printPosition() {
-        return 10 * y + x;
+    public int position() {
+        return 10 * i + j;
     }
 
-    public boolean hasPath(String n) { //temp placeholder
-        if (n.equals("top")) {
-            ArrayList<Node> visited = new ArrayList<>();
-            visited.add(this);
-            for (int i = 0; i < visited.size(); i++) {
-                for (Node neighbor : visited.get(i).neighbors) {
-                    if (!visited.contains(neighbor)) visited.add(neighbor);
-                }
-            }
-            ArrayList<Node> top = new ArrayList<>();
-            for (int x = 0; x < 9; x++) top.add(getNodeByCoordinates(x, 8));
-            for (Node v : top) {
-                if (visited.contains(v)) return true;
+    public boolean hasPath(String n) {
+        visited.add(this);
+        for (int i = 0; i < visited.size(); i++) {
+            for (Node neighbor : visited.get(i).neighbors) {
+                if (!visited.contains(neighbor)) visited.add(neighbor);
             }
         }
         if (n.equals("bottom")) {
-            ArrayList<Node> visited = new ArrayList<>();
-            visited.add(this);
-            for (int i = 0; i < visited.size(); i++) {
-                for (Node neighbor : visited.get(i).neighbors) {
-                    if (!visited.contains(neighbor)) visited.add(neighbor);
-                }
+            for (Node v : bottomNodes) {
+                if (visited.contains(v)) return true;
             }
-            ArrayList<Node> bottom = new ArrayList<>();
-            for (int x = 0; x < 9; x++) bottom.add(getNodeByCoordinates(x, 0));
-            for (Node v : bottom) {
+        }
+        if (n.equals("top")) {
+            for (Node v : topNodes) {
                 if (visited.contains(v)) return true;
             }
         }
         return false;
     }
 
-    public boolean isLegalWalk(Node n) {
-        for (Node i : this.neighbors) {
+
+    public Node moveUp() {
+        Node temp = getNodeByCoordinates(i - 1, j);
+        if (temp.equals(noNode)) return this;
+        return temp;
+    }
+
+    public Node moveDown() {
+        Node temp = getNodeByCoordinates(i + 1, j);
+        if (temp.equals(noNode)) return this;
+        return temp;
+    }
+
+    public Node moveRight() {
+        Node temp = getNodeByCoordinates(i, j + 1);
+        if (temp.equals(noNode)) return this;
+        return temp;
+    }
+
+    public Node moveLeft() {
+        Node temp = getNodeByCoordinates(i, j - 1);
+        if (temp.equals(noNode)) return this;
+        return temp;
+    }
+
+    public boolean isPlayerIsHere() {
+        return playerIsHere;
+    }
+
+    public void setPlayerIsHere() {
+        this.playerIsHere = false;
+        for (Player i : Player.players)
+            if (i.getLocation().equals(this)) {
+                this.playerIsHere = true;
+                break;
+            }
+    }
+
+    public boolean isNeighbor(Node n) {
+        for (Node i : neighbors) {
             if (i.equals(n)) return true;
         }
         return false;
-    }
-
-    public Node moveUpwards() {
-        return new Node(this.x, this.y + 1);
     }
 }

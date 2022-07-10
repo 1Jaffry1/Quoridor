@@ -2,13 +2,10 @@
 
 package Back;
 
-import java.util.ArrayList;
-
 public class Game {
     private Board board;
     private Player player1;
     private Player player2;
-    private ArrayList<Wall> placedWalls = new ArrayList<>();
 
     public Game(Board board, Player player1, Player player2) {
         this.board = board;
