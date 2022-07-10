@@ -15,6 +15,10 @@ public class Node {
         this.x = x;
         this.y = y;
     }
+    public Node(int m){
+        this.y = m/10;
+        this.x = m%10;
+    }
 
     public static Node getNodeByCoordinates(int x, int y) {
         for (Node n : nodes) {
@@ -43,13 +47,13 @@ public class Node {
     }
 
     public boolean hasPath(String n) { //temp placeholder
-            ArrayList<Node> visited = new ArrayList<>();
-            visited.add(this);
-            for (int i = 0; i < visited.size(); i++) {
-                for (Node neighbor : visited.get(i).neighbors) {
-                    if (!visited.contains(neighbor)) visited.add(neighbor);
-                }
+        ArrayList<Node> visited = new ArrayList<>();
+        visited.add(this);
+        for (int i = 0; i < visited.size(); i++) {
+            for (Node neighbor : visited.get(i).neighbors) {
+                if (!visited.contains(neighbor)) visited.add(neighbor);
             }
+        }
         if (n.equals("bottom")) {
             ArrayList<Node> bottom = new ArrayList<>();
             for (int x = 0; x < 9; x++) bottom.add(getNodeByCoordinates(x, 8));
@@ -68,9 +72,21 @@ public class Node {
     }
 
 
-//    public Node moveUpwards() {
-//        return new Node(this.x, this.y - 1);
-//    }
+    public Node moveUp() {
+        return new Node(this.x, this.y - 1);
+    }
+
+    public Node moveDown() {
+        return new Node(this.x, this.y + 1);
+    }
+
+    public Node moveRight() {
+        return new Node(this.x + 1, this.y);
+    }
+
+    public Node moveLeft() {
+        return new Node(this.x - 1, this.y);
+    }
 
     public boolean isPlayerIsHere() {
         return playerIsHere;

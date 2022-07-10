@@ -3,17 +3,20 @@ package Back;
 import java.util.ArrayList;
 
 public class Player {
-    public static Player noPlayer = new Player(-1, "none", Node.noNode);
+    public static Player noPlayer = new Player(-1, "none");
     public static ArrayList<Player> players = new ArrayList<>();
     private final String role; //top or bottom
     private int name;
     private Node location;
     private int wallsRemaining = 10;
 
-    public Player(int name, String role, Node location) {
+
+    public Player(int name, String role) {
         this.name = name;
         this.role = role;
-        this.location = location;
+        if (role.equals( "top")){
+            location = new Node(4);
+        }
     }
 
     public static Player getplayerwithname(int name) {
@@ -33,9 +36,17 @@ public class Player {
         location = n;
     }
 
-    public Node Moveupwards() {
-        location = new Node(location.getX(), location.getY() + 1);
-        return location;
+    public void moveUp() {
+        this.setLocation(location.moveUp());
+    }
+    public void moveDown() {
+        this.setLocation(location.moveDown());
+    }
+    public void moveRight(){
+        this.setLocation(location.moveRight());
+    }
+    public void moveLeft(){
+        this.setLocation(location.moveLeft());
     }
 
     public String getRole() {
