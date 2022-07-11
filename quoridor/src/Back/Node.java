@@ -6,18 +6,16 @@ public class Node {
     public static ArrayList<Node> nodes = new ArrayList<>();
     public static ArrayList<Node> topNodes = new ArrayList<>();
     public static ArrayList<Node> bottomNodes = new ArrayList<>();
-//    static Node noNode = new Node(-2, -2);
     private final int j;
     private final int i;
     public ArrayList<Node> visited = new ArrayList<>();
     public ArrayList<Node> neighbors = new ArrayList<>();
-    //    public ArrayList<Edge> edges = new ArrayList<>();
     private boolean playerIsHere;
 
     public Node(int i, int j) {
         this.j = j;
         this.i = i;
-        if (i!=-2 && j!=-2) {
+        if (i != -2 && j != -2) {
             nodes.add(this);
         }
     }
@@ -41,6 +39,18 @@ public class Node {
         return null;
     }
 
+    public static void setPlayerIsHere() {
+        for (Node i : Node.nodes) {
+            i.playerIsHere = false;
+        }
+        for (Player p : Player.players) {
+            p.getLocation().playerIsHere = true;
+        }
+    }
+
+
+
+
     public int getJ() {
         return j;
     }
@@ -52,10 +62,6 @@ public class Node {
     @Override
     public String toString() {
         return i + "" + j;
-    }
-
-    public int position() {
-        return 10 * i + j;
     }
 
     public boolean hasPath(String n) {
@@ -78,42 +84,27 @@ public class Node {
         return false;
     }
 
-
     public Node moveUp() {
-        Node temp = getNodeByCoordinates(i - 1, j);
-        if (temp == null) return this;
-        return temp;
+        return getNodeByCoordinates(i - 1, j);
+
     }
 
     public Node moveDown() {
-        Node temp = getNodeByCoordinates(i + 1, j);
-        if (temp == null) return this;
-        return temp;
+        return getNodeByCoordinates(i + 1, j);
+
     }
 
     public Node moveRight() {
-        Node temp = getNodeByCoordinates(i, j + 1);
-        if (temp == null) return this;
-        return temp;
+        return getNodeByCoordinates(i, j + 1);
     }
 
     public Node moveLeft() {
-        Node temp = getNodeByCoordinates(i, j - 1);
-        if (temp == null) return this;
-        return temp;
+        return getNodeByCoordinates(i, j - 1);
+
     }
 
     public boolean isPlayerIsHere() {
         return playerIsHere;
-    }
-
-    public void setPlayerIsHere() {
-        this.playerIsHere = false;
-        for (Player i : Player.players)
-            if (i.getLocation().equals(this)) {
-                this.playerIsHere = true;
-                break;
-            }
     }
 
     public boolean isNeighbor(Node n) {

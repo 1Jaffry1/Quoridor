@@ -3,15 +3,14 @@ package Back;
 import java.util.ArrayList;
 
 public class Player {
-    //    public static Player noPlayer = new Player(-1, "none");
     public static ArrayList<Player> players = new ArrayList<>();
     private final String goal; //top or bottom
-    private int name;
+    private String name;
     private Node location;
     private int wallsRemaining = 10;
 
 
-    public Player(int name, String goal) {
+    public Player(String name, String goal) {
         this.name = name;
         this.goal = goal;
         if (goal.equals("top")) {
@@ -28,33 +27,50 @@ public class Player {
 
     public void setLocation(Node n) {
         location = n;
+        Node.setPlayerIsHere();
     }
 
     public void moveUp() {
-        this.setLocation(location.moveUp());
+        if (this.location.neighbors.contains(this.location.moveUp())) {
+            this.location = this.location.moveUp();
+            Node.setPlayerIsHere();
+
+        }
     }
 
     public void moveDown() {
-        this.setLocation(location.moveDown());
+        if (this.location.neighbors.contains(this.location.moveDown())) {
+            this.location = this.location.moveDown();
+            Node.setPlayerIsHere();
+
+        }
     }
 
     public void moveRight() {
-        this.setLocation(location.moveRight());
+        if (this.location.neighbors.contains(this.location.moveRight())) {
+            this.location = this.location.moveRight();
+            Node.setPlayerIsHere();
+
+        }
     }
 
     public void moveLeft() {
-        this.setLocation(location.moveLeft());
+        if (this.location.neighbors.contains(this.location.moveLeft())) {
+            this.location = this.location.moveLeft();
+            Node.setPlayerIsHere();
+
+        }
     }
 
     public String getGoal() {
         return goal;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -67,8 +83,7 @@ public class Player {
     }
 
     public boolean hasPath() {
-        if (this.getLocation() == null)
-            return false;
+        if (this.getLocation() == null) return false;
         return this.getLocation().hasPath(this.goal);
     }
 
