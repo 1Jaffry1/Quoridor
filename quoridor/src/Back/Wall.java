@@ -6,8 +6,8 @@ public class Wall {
     public static ArrayList<Wall> wallsplaced = new ArrayList<>();
     //    default wall:
 //    public static Wall noWall = new Wall(Node.noNode, "v");
-    private Node start;
-    private String allign;
+    private final Node start;
+    private final String allign;
 //    private String name = this.start.position() + this.allign;
 
     public Wall(Node start, String allign) {
@@ -36,16 +36,16 @@ public class Wall {
         return "" + start.getI() + "" + start.getJ() + allign;
     }
 
-    public boolean islegal() {
+    public boolean islegal() { //needs to check if wall is legal
         for (Wall w : wallsplaced)
-            if (this.equals(w)) return false; //wall exist
+            if (this.equals(w)) return false; //wall exists already
         this.placeWall();
         for (Player i : Player.players)
             if (!i.hasPath()) {
+                this.removeWall();
                 return false;
             }
         this.removeWall();
-
         return true;
     }
 
@@ -61,52 +61,61 @@ public class Wall {
 
         if (allign.equals("h")) {
             Node topnode = Node.getNodeByCoordinates(getStart().getI() - 1, getStart().getJ());
-            try {
-                this.start.neighbors.remove(topnode);
-                topnode.neighbors.remove(this.start);
-            } catch (Exception e) {
-                System.out.println("Wall already here");
-            }
-
+            if (topnode != null)
+                try {
+                    this.start.neighbors.remove(topnode);
+                    topnode.neighbors.remove(this.start);
+                } catch (Exception e) {
+                    System.out.println("Wall already here");
+                }
             Node rightnode = Node.getNodeByCoordinates(getStart().getI(), getStart().getJ() + 1);
             Node topnode2 = Node.getNodeByCoordinates(rightnode.getI() - 1, rightnode.getJ());
-            try {
-                rightnode.neighbors.remove(topnode2);
-                topnode2.neighbors.remove(rightnode);
-            } catch (Exception e) {
-                System.out.println("Wall already here");
-            }
+            if (topnode2 != null)
+                try {
+                    rightnode.neighbors.remove(topnode2);
+                    topnode2.neighbors.remove(rightnode);
+                } catch (Exception e) {
+                    System.out.println("Wall already here");
+                }
 
         } else if (allign.equals("v")) {
             Node Rightnode = Node.getNodeByCoordinates(getStart().getI(), getStart().getJ() + 1);
-            try {
-                this.start.neighbors.remove(Rightnode);
-                Rightnode.neighbors.remove(this.start);
-            } catch (Exception e) {
-                System.out.println("Wall already here");
-            }
+            if (Rightnode != null)
+                try {
+                    this.start.neighbors.remove(Rightnode);
+                    Rightnode.neighbors.remove(this.start);
+                } catch (Exception e) {
+                    System.out.println("Wall already here");
+                }
             Node topnode = Node.getNodeByCoordinates(getStart().getI() - 1, getStart().getJ());
             Node Rightnode2 = Node.getNodeByCoordinates(topnode.getI(), topnode.getJ() + 1); //node that is right to topnode
-            try {
-                topnode.neighbors.remove(Rightnode2);
-                Rightnode2.neighbors.remove(topnode);
-            } catch (Exception e) {
-                System.out.println("Wall already here");
-            }
+            if (Rightnode2 != null)
+                try {
+                    topnode.neighbors.remove(Rightnode2);
+                    Rightnode2.neighbors.remove(topnode);
+                } catch (Exception e) {
+                    System.out.println("Wall already here");
+                }
         }
         wallsplaced.add(this);
     }
 
     public void removeWall() {
-        wallsplaced.removeIf(this::equals);
+        wallsplaced.removeIf(wall -> wall.equals(this));
         if (this.allign.equals("v")) {
-            Node Rightnode = Node.getNodeByCoordinates(getStart().getJ() + 1, getStart().getI());
+            Node Rightnode = Node.getNodeByCoordinates(getStart().getI(), getStart().getJ() + 1);
             this.start.neighbors.add(Rightnode);
-            Node topnode = Node.getNodeByCoordinates(getStart().getJ(), getStart().getI() + 1);
-            Node Rightnode2 = Node.getNodeByCoordinates(topnode.getJ() + 1, topnode.getI()); //node that is right to topnode
+            Node topnode = Node.getNodeByCoordinates(getStart().getI() - 1, getStart().getJ());
+            Node Rightnode2 = Node.getNodeByCoordinates(topnode.getI(), topnode.getJ() + 1); //node that is right to topnode
             topnode.neighbors.add(Rightnode2);
         } else if (this.allign.equals("h")) {
-            
+            Node topnode = Node.getNodeByCoordinates(getStart().getI() - 1, getStart().getJ());
+            this.start.neighbors.add(topnode);
+            Node rightnode = Node.getNodeByCoordinates(getStart().getI(), getStart().getJ() + 1);
+            Node topnode2 = Node.getNodeByCoordinates(rightnode.getI() - 1, rightnode.getJ()); //topnode to the rightnode
+            rightnode.neighbors.add(topnode2);
         }
+
+
     }
 }

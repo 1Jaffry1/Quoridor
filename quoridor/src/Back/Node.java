@@ -6,7 +6,7 @@ public class Node {
     public static ArrayList<Node> nodes = new ArrayList<>();
     public static ArrayList<Node> topNodes = new ArrayList<>();
     public static ArrayList<Node> bottomNodes = new ArrayList<>();
-    static Node noNode = new Node(-2, -2);
+//    static Node noNode = new Node(-2, -2);
     private final int j;
     private final int i;
     public ArrayList<Node> visited = new ArrayList<>();
@@ -17,7 +17,9 @@ public class Node {
     public Node(int i, int j) {
         this.j = j;
         this.i = i;
-        nodes.add(this);
+        if (i!=-2 && j!=-2) {
+            nodes.add(this);
+        }
     }
 
     public Node(int m) {
@@ -36,7 +38,7 @@ public class Node {
                 return n;
             }
         }
-        return noNode;
+        return null;
     }
 
     public int getJ() {
@@ -79,25 +81,25 @@ public class Node {
 
     public Node moveUp() {
         Node temp = getNodeByCoordinates(i - 1, j);
-        if (temp.equals(noNode)) return this;
+        if (temp == null) return this;
         return temp;
     }
 
     public Node moveDown() {
         Node temp = getNodeByCoordinates(i + 1, j);
-        if (temp.equals(noNode)) return this;
+        if (temp == null) return this;
         return temp;
     }
 
     public Node moveRight() {
         Node temp = getNodeByCoordinates(i, j + 1);
-        if (temp.equals(noNode)) return this;
+        if (temp == null) return this;
         return temp;
     }
 
     public Node moveLeft() {
         Node temp = getNodeByCoordinates(i, j - 1);
-        if (temp.equals(noNode)) return this;
+        if (temp == null) return this;
         return temp;
     }
 

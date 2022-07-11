@@ -7,10 +7,6 @@ public class Run {
     public static void main(String[] args) {
         ArrayList<Node> main = new ArrayList<>();
         Board board = new Board(9, 9, main);
-        Player playerone = new Player(1, "bottom"); //he starts at the top
-        Player playertwo = new Player(2, "top"); // he starts at the bottom
-        Game game = new Game(board, playerone, playertwo);
-
 
 
         for (int i = 0; i < board.getHeight(); i++) {
@@ -20,27 +16,19 @@ public class Run {
         }
         //adding all neighbors
         for (Node n : board.grid) {
-            try {
+            if (n.moveUp() != null)
                 n.neighbors.add(n.moveUp());
-            } catch (Exception e) {
-                System.out.println("Border cell");
-            }
-            try {
+            if (n.moveDown() != null)
                 n.neighbors.add(n.moveDown());
-            } catch (Exception e) {
-                System.out.println("Border cell");
-            }
-            try {
+            if (n.moveRight() != null)
                 n.neighbors.add(n.moveRight());
-            } catch (Exception e) {
-                System.out.println("Border cell");
-            }
-            try {
+            if (n.moveLeft() != null)
                 n.neighbors.add(n.moveLeft());
-            } catch (Exception e) {
-                System.out.println("Border cell");
-            }
+
         }
+        Player playerone = new Player(1, "bottom"); //he starts at the top
+        Player playertwo = new Player(2, "top"); // he starts at the bottom
+        Game game = new Game(board, playerone, playertwo);
 
         for (int j = 0; j < 9; j++) Node.topNodes.add(Node.getNodeByCoordinates(0, j));
         for (int j = 0; j < 9; j++) Node.bottomNodes.add(Node.getNodeByCoordinates(8, j));
@@ -49,13 +37,25 @@ public class Run {
 //            wall.placeWall();
 //        }
 
-        System.out.println(board.grid); //test
+//        System.out.println(board.grid); //test
         Scanner scanner = new Scanner(System.in);
-        System.out.println(Node.bottomNodes);
-        System.out.println(Node.topNodes);
+        String one = "10h";
+        String two = "11v";
+        System.out.println(playerone.getLocation());
+        System.out.println(playertwo.getLocation());
+        playerone.setLocation(Node.getNodeByName(01));
+        Wall wall = new Wall(one);
+        Wall wall2 = new Wall(two);
+        Wall wall3 = new Wall("43h");
+        System.out.println(Node.getNodeByName(01).isNeighbor(Node.getNodeByName(02)));
+        System.out.println(Node.getNodeByName(01).hasPath("bottom"));
+        System.out.println(Wall.wallsplaced);
+        System.out.println(Node.getNodeByName(0).isNeighbor(Node.getNodeByName(10)));
+        System.out.println(Node.getNodeByName(0).isNeighbor(Node.getNodeByName(1)));
+
 
     }
 }
 
 
-//fix nonode addition to neighbors
+//fix nonode addition to neighbors : done, now it adds itself

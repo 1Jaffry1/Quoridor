@@ -3,7 +3,7 @@ package Back;
 import java.util.ArrayList;
 
 public class Player {
-    public static Player noPlayer = new Player(-1, "none");
+    //    public static Player noPlayer = new Player(-1, "none");
     public static ArrayList<Player> players = new ArrayList<>();
     private final String goal; //top or bottom
     private int name;
@@ -14,18 +14,12 @@ public class Player {
     public Player(int name, String goal) {
         this.name = name;
         this.goal = goal;
-        if (goal.equals( "top")){
-            location = new Node(4);
+        if (goal.equals("top")) {
+            setLocation(Node.getNodeByName(84));
+        } else if (goal.equals("bottom")) {
+            setLocation(Node.getNodeByName(4));
         }
-    }
-
-    public static Player getplayerwithname(int name) {
-        for (Player p : Player.players) {
-            if (p.getName() == name) {
-                return p;
-            }
-        }
-        return noPlayer;
+        players.add(this);
     }
 
     public Node getLocation() {
@@ -39,13 +33,16 @@ public class Player {
     public void moveUp() {
         this.setLocation(location.moveUp());
     }
+
     public void moveDown() {
         this.setLocation(location.moveDown());
     }
-    public void moveRight(){
+
+    public void moveRight() {
         this.setLocation(location.moveRight());
     }
-    public void moveLeft(){
+
+    public void moveLeft() {
         this.setLocation(location.moveLeft());
     }
 
@@ -70,6 +67,8 @@ public class Player {
     }
 
     public boolean hasPath() {
+        if (this.getLocation() == null)
+            return false;
         return this.getLocation().hasPath(this.goal);
     }
 
