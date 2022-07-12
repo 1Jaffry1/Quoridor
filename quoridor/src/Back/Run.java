@@ -27,6 +27,9 @@ public class Run {
                         playertwo.moveUp();
                         cnt--;
                     }
+                    else {
+                        System.out.println("ILLEGAL MOVE");
+                    }
                     break;
 
                 case "s":
@@ -37,6 +40,7 @@ public class Run {
                         playertwo.moveDown();
                         cnt--;
                     }
+                    else System.out.println("ILLEGAL MOVE");
                     break;
 
                 case "d":
@@ -47,6 +51,7 @@ public class Run {
                         playertwo.moveRight();
                         cnt--;
                     }
+                    else System.out.println("ILLEGAL MOVE");
                     break;
 
                 case "a":
@@ -57,6 +62,7 @@ public class Run {
                         playertwo.moveLeft();
                         cnt--;
                     }
+                    else System.out.println("ILLEGAL MOVE");
                     break;
 
                 case "q":
@@ -73,7 +79,12 @@ public class Run {
                     game.load(name2);
                     break;
                 default:
-                    new Wall(move);
+                    try{
+                    new Wall(move);}
+                    catch(Exception e){
+                        System.out.println("WHAT IS THIS");
+                        break;
+                    }
                     if (cnt == 1) {
                         playerone.setWallsRemaining(playerone.getWallsRemaining() - 1);
                         cnt++;

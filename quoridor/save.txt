@@ -1,16 +1,16 @@
-testgame1.game
-10h 11v 43h 
+one.game
+
 ID1
 ID2
 04
 84
-9
-8
-testgame2.game
-34h 56v 
+10
+10
+one.game
+
 ID1
 ID2
-04
-85
+14
+84
 10
-8
+10
