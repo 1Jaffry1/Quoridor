@@ -7,6 +7,7 @@ public class Game {
     private Player player1;
     private Player player2;
     public boolean win = false;
+    public Player winner;
 
     public Game(Board board, Player player1, Player player2) {
         this.board = board;
@@ -15,4 +16,10 @@ public class Game {
     }
 
 
+    public void save(String gamename) {
+        IOF.writeToFile(gamename, player1.getName(), player2.getName(), player1.getLocation(), player2.getLocation(), player1.getWallsRemaining(), player2.getWallsRemaining());
+    }
+
+    public void load(String name2) {
+    }
 }

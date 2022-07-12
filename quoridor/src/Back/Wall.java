@@ -23,15 +23,6 @@ public class Wall {
 
     }
 
-
-    //
-//    public static Wall getWallByNode(Node start, String allign) {
-//        for (Wall wall : wallsplaced) {
-//            if (wall.equals(new Wall(start, allign))) return wall;
-//        }
-//        return noWall;
-//    }
-
     @Override
     public String toString() {
         return "" + start.getI() + "" + start.getJ() + allign;
@@ -39,7 +30,7 @@ public class Wall {
 
     public boolean islegal() { //needs to check if wall is legal ::: apparently it has issues???
         for (Wall w : wallsplaced)
-            if (this.equals(w)) return false; //wall exists already
+            if (this.equals(w) || this.start.equals(w.start)) return false; //wall exists already or crossing walls
         this.placeWall();
         for (Player i : Player.players)
             if (!i.hasPath()) {
