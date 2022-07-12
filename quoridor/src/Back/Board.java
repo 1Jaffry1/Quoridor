@@ -27,6 +27,19 @@ public class Board {
         }
     }
 
+    public static void printboard() {
+        System.out.println("_____________________________________");
+        for (int i = 0; i < 8; i++) {
+            System.out.println("|   :   :   :   :   :   :   :   :   |");
+            System.out.println("|...................................|");
+        }
+            System.out.println("|   :   :   :   :   :   :   :   :   |");
+            System.out.println("‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾");
+
+
+
+    }
+
 
     @Override
     public String toString() {

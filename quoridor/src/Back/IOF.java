@@ -29,6 +29,7 @@ public class IOF {// this is the class to read and write to and from file
             String player2loc = br.readLine();
             int player1walls = Integer.parseInt(br.readLine());
             int player2walls = Integer.parseInt(br.readLine());
+            String winner = br.readLine();
             Player one = new Player(player1, "top");
             Player two = new Player(player2, "bottom");
             one.setLocation(Node.getNodeByName(Integer.parseInt(player1loc)));
@@ -36,7 +37,7 @@ public class IOF {// this is the class to read and write to and from file
             one.setWallsRemaining(player1walls);
             two.setWallsRemaining(player2walls);
 
-            return new Game(gamename, one, two);
+            return new Game(gamename, list, one, two);
 
         } catch (IOException e) {
             System.out.println("File not found");
@@ -47,7 +48,7 @@ public class IOF {// this is the class to read and write to and from file
 
     //what are the most important attributes of the game? :
 //    the walls and the players name and position. the rest are the same for all games
-    public static void writeToFile(String gameName, String p1name, String p2name, Node p1location, Node p2location, int wallsRemaining1, int wallsRemaining2) {
+    public static void writeToFile(String gameName, String p1name, String p2name, Node p1location, Node p2location, int wallsRemaining1, int wallsRemaining2, Player winner) {
         try {
             FileWriter writer = new FileWriter("save.txt", true);
             writer.write(gameName + ".game\n");
@@ -60,6 +61,7 @@ public class IOF {// this is the class to read and write to and from file
             writer.write(p2location.toString() + "\n");
             writer.write(wallsRemaining1 + "\n");
             writer.write(wallsRemaining2 + "\n");
+            writer.write(winner.getName() + "\n");
             writer.close();
         } catch (IOException e) {
             System.out.println("error in writing file");

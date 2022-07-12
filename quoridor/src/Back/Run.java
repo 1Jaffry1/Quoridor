@@ -7,16 +7,13 @@ public class Run {
         Scanner scanner = new Scanner(System.in);
         Board board = new Board();
 
-        Player playerone = new Player("ID1", "bottom"); //he starts at the top //4
-        Player playertwo = new Player("ID2", "top"); // he starts a// t the bottom //84
-        Game game = new Game("game1", playerone, playertwo);
-
-
-        System.out.println(board);
+        Player playerone = new Player("mohammad", "bottom"); //he starts at the top //4
+        Player playertwo = new Player("ali", "top"); // he starts a// t the bottom //84
+        Game game = new Game("game1", null, playerone, playertwo);
 
         int cnt = 1; //oscillates between 1 and 2
+        Board.printboard();
         while (!game.win) {
-//            String move = "";
             String move = scanner.nextLine();
             switch (move) {
                 case "w":
@@ -26,9 +23,9 @@ public class Run {
                     } else if (cnt == 2 && playertwo.isLegalWalk(playertwo.getLocation().moveUp())) {
                         playertwo.moveUp();
                         cnt--;
-                    }
-                    else {
+                    } else {
                         System.out.println("ILLEGAL MOVE");
+                        break;
                     }
                     break;
 
@@ -39,8 +36,10 @@ public class Run {
                     } else if (cnt == 2 && playertwo.isLegalWalk(playertwo.getLocation().moveDown())) {
                         playertwo.moveDown();
                         cnt--;
+                    } else {
+                        System.out.println("ILLEGAL MOVE");
+                        break;
                     }
-                    else System.out.println("ILLEGAL MOVE");
                     break;
 
                 case "d":
@@ -50,8 +49,10 @@ public class Run {
                     } else if (cnt == 2 && playertwo.isLegalWalk(playertwo.getLocation().moveRight())) {
                         playertwo.moveRight();
                         cnt--;
+                    } else {
+                        System.out.println("ILLEGAL MOVE");
+                        break;
                     }
-                    else System.out.println("ILLEGAL MOVE");
                     break;
 
                 case "a":
@@ -61,8 +62,10 @@ public class Run {
                     } else if (cnt == 2 && playertwo.isLegalWalk(playertwo.getLocation().moveLeft())) {
                         playertwo.moveLeft();
                         cnt--;
+                    } else {
+                        System.out.println("ILLEGAL MOVE");
+                        break;
                     }
-                    else System.out.println("ILLEGAL MOVE");
                     break;
 
                 case "q":
@@ -76,12 +79,13 @@ public class Run {
                     System.exit(0);
                 case "load":
                     String name2 = scanner.nextLine();
+
                     game.load(name2);
                     break;
                 default:
-                    try{
-                    new Wall(move);}
-                    catch(Exception e){
+                    try {
+                        new Wall(move);
+                    } catch (Exception e) {
                         System.out.println("WHAT IS THIS");
                         break;
                     }
@@ -93,22 +97,16 @@ public class Run {
                         cnt--;
                     }
                     break;
-
             }
             if (Node.bottomNodes.contains(playerone.getLocation())) {
-                    System.out.println("Player one wins!");
-                    game.win = true;
-                    game.winner = playerone;
+                System.out.println("Player one wins!");
+                game.win = true;
+                game.winner = playerone;
             } else if (Node.topNodes.contains(playertwo.getLocation())) {
-                    System.out.println("Player two wins!");
-                    game.win = true;
-                    game.winner = playertwo;
+                System.out.println("Player two wins!");
+                game.win = true;
+                game.winner = playertwo;
             }
-
         }
     }
-
 }
-
-
-//fix nonode addition to neighbors : done, now it adds itself
