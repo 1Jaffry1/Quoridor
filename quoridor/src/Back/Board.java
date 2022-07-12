@@ -21,6 +21,10 @@ public class Board {
             if (n.moveRight() != null) n.neighbors.add(n.moveRight());
             if (n.moveLeft() != null) n.neighbors.add(n.moveLeft());
         }
+        for (int j = 0; j < width; j++) {
+            Node.bottomNodes.add(Node.getNodeByCoordinates(8, j));
+            Node.topNodes.add(Node.getNodeByCoordinates(0, j));
+        }
     }
 
 

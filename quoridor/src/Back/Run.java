@@ -7,31 +7,13 @@ public class Run {
         Scanner scanner = new Scanner(System.in);
         Board board = new Board();
 
-        //we can also add the players here
-
-        //adding all neighbors
-//        for (Node n : board.grid) {
-//            if (n.moveUp() != null) n.neighbors.add(n.moveUp());
-//            if (n.moveDown() != null) n.neighbors.add(n.moveDown());
-//            if (n.moveRight() != null) n.neighbors.add(n.moveRight());
-//            if (n.moveLeft() != null) n.neighbors.add(n.moveLeft());
-
         Player playerone = new Player("ID1", "bottom"); //he starts at the top //4
         Player playertwo = new Player("ID2", "top"); // he starts a// t the bottom //84
-        Game game = new Game(board, playerone, playertwo);
+        Game game = new Game("game1", playerone, playertwo);
 
 
         System.out.println(board);
-        //from file: import Arraylist(walls)
-//        for (Wall wall : new ArrayList<Wall>()){  //change this to loaded array list
-//            wall.placeWall();
-//        }
-//        Wall wall1 = new Wall("10h");
-////        playerone.setLocation(Node.getNodeByName(1));
-////        System.out.println(playerone.getLocation());
-//        Wall wall2 = new Wall("11v");
-//        System.out.println(playerone.hasPath());
-//        System.out.println(Wall.wallsplaced);
+
         int cnt = 1; //oscillates between 1 and 2
         while (!game.win) {
 //            String move = "";

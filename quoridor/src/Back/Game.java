@@ -3,14 +3,14 @@
 package Back;
 
 public class Game {
-    private Board board;
+    private String name;
     private Player player1;
     private Player player2;
     public boolean win = false;
     public Player winner;
 
-    public Game(Board board, Player player1, Player player2) {
-        this.board = board;
+    public Game(String name, Player player1, Player player2) {
+        this.name = name;
         this.player1 = player1;
         this.player2 = player2;
     }
@@ -20,6 +20,7 @@ public class Game {
         IOF.writeToFile(gamename, player1.getName(), player2.getName(), player1.getLocation(), player2.getLocation(), player1.getWallsRemaining(), player2.getWallsRemaining());
     }
 
-    public void load(String name2) {
+    public void load(String gamename) {
+        IOF.readFromFile(gamename);
     }
 }

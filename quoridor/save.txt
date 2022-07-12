@@ -1,6 +1,16 @@
-testgame
-
+testgame1.game
+10h 11v 43h 
 ID1
 ID2
 04
 84
+9
+8
+testgame2.game
+34h 56v 
+ID1
+ID2
+04
+85
+10
+8
