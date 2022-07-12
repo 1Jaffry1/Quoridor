@@ -7,8 +7,15 @@ public class Board {
     private final int width = 9;
     public ArrayList<Node> grid;
 
-    public Board(ArrayList<Node> main) {
+    public Board() {
+        this.grid = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                this.grid.add(new Node(i, j));
+            }
+        }
     }
+
 //    public Player[] players = new Player[2];
 
 

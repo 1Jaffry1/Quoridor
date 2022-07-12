@@ -1,21 +1,14 @@
 package Back;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Run {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ArrayList<Node> main = new ArrayList<>();
-        Board board = new Board(main);
+        Board board = new Board();
 
+            //we can also add the players here
 
-        for (int i = 0; i < board.getHeight(); i++) {
-            for (int j = 0; j < board.getWidth(); j++) {
-                board.grid.add(new Node(i, j));
-            }
-            //we can also add the players heres
-        }
         //adding all neighbors
         for (Node n : board.grid) {
             if (n.moveUp() != null) n.neighbors.add(n.moveUp());

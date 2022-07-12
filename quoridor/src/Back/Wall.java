@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Wall {
     public static ArrayList<Wall> wallsplaced = new ArrayList<>();
     //    default wall:
-    private Node start;
+    private final Node start;
     private final String allign;
 
     public Wall(Node start, String allign) { // constructor
@@ -90,6 +90,7 @@ public class Wall {
         wallsplaced.remove(this);
         if (this.allign.equals("v")) {
             Node Rightnode = Node.getNodeByCoordinates(getStart().getI(), getStart().getJ() + 1);
+            assert Rightnode != null;
             this.start.neighbors.add(Rightnode);
             Node topnode = Node.getNodeByCoordinates(getStart().getI() - 1, getStart().getJ());
             assert topnode != null;
@@ -97,6 +98,7 @@ public class Wall {
             topnode.neighbors.add(Rightnode2);
         } else if (this.allign.equals("h")) {
             Node topnode = Node.getNodeByCoordinates(getStart().getI() - 1, getStart().getJ());
+            assert topnode != null;
             this.start.neighbors.add(topnode);
             Node rightnode = Node.getNodeByCoordinates(getStart().getI(), getStart().getJ() + 1);
             assert rightnode != null;
