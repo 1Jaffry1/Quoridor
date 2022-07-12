@@ -15,9 +15,7 @@ public class Node {
     public Node(int i, int j) {
         this.j = j;
         this.i = i;
-        if (i != -2 && j != -2) {
             nodes.add(this);
-        }
     }
 
     public Node(int m) {
