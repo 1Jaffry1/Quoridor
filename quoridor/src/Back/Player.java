@@ -31,7 +31,8 @@ public class Player {
     }
 
     public void moveUp() {
-        if (this.location.neighbors.contains(this.location.moveUp())) {
+//        if (this.location.neighbors.contains(this.location.moveUp()))
+        if (isLegalWalk(this.location.moveUp())) {
             this.location = this.location.moveUp();
             Node.setPlayerIsHere();
 
@@ -39,15 +40,16 @@ public class Player {
     }
 
     public void moveDown() {
-        if (this.location.neighbors.contains(this.location.moveDown())) {
+//        if (this.location.neighbors.contains(this.location.moveDown()))
+        if(isLegalWalk(this.location.moveDown())) {
             this.location = this.location.moveDown();
             Node.setPlayerIsHere();
-
         }
     }
 
     public void moveRight() {
-        if (this.location.neighbors.contains(this.location.moveRight())) {
+//        if (this.location.neighbors.contains(this.location.moveRight()))
+        if (isLegalWalk(this.location.moveRight())) {
             this.location = this.location.moveRight();
             Node.setPlayerIsHere();
 
@@ -55,15 +57,12 @@ public class Player {
     }
 
     public void moveLeft() {
-        if (this.location.neighbors.contains(this.location.moveLeft())) {
+//        if (this.location.neighbors.contains(this.location.moveLeft()))
+        if(isLegalWalk(this.location.moveLeft())) {
             this.location = this.location.moveLeft();
             Node.setPlayerIsHere();
 
         }
-    }
-
-    public String getGoal() {
-        return goal;
     }
 
     public String getName() {

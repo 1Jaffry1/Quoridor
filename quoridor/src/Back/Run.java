@@ -7,7 +7,7 @@ public class Run {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         ArrayList<Node> main = new ArrayList<>();
-        Board board = new Board(9, 9, main);
+        Board board = new Board(main);
 
 
         for (int i = 0; i < board.getHeight(); i++) {
@@ -23,36 +23,73 @@ public class Run {
             if (n.moveRight() != null) n.neighbors.add(n.moveRight());
             if (n.moveLeft() != null) n.neighbors.add(n.moveLeft());
         }
-        Player playerone = new Player("ID1", "bottom"); //he starts at the top
-        Player playertwo = new Player("ID2", "top"); // he starts at the bottom
+        Player playerone = new Player("ID1", "bottom"); //he starts at the top //4
+        Player playertwo = new Player("ID2", "top"); // he starts a// t the bottom //84
         Game game = new Game(board, playerone, playertwo);
 
         for (int j = 0; j < 9; j++) Node.topNodes.add(Node.getNodeByCoordinates(0, j));
         for (int j = 0; j < 9; j++) Node.bottomNodes.add(Node.getNodeByCoordinates(8, j));
+        System.out.println(board);
         //from file: import Arraylist(walls)
 //        for (Wall wall : new ArrayList<Wall>()){  //change this to loaded array list
 //            wall.placeWall();
 //        }
+//        Wall wall1 = new Wall("10h");
+////        playerone.setLocation(Node.getNodeByName(1));
+////        System.out.println(playerone.getLocation());
+//        Wall wall2 = new Wall("11v");
+//        System.out.println(playerone.hasPath());
+//        System.out.println(Wall.wallsplaced);
+        int cnt = 1; //oscillates between 1 and 2
+        while (!game.win) {
+            String move = scanner.nextLine();
+            switch (move) {
+                case "w":
+                    if (cnt == 1) {
+                        playerone.moveUp();
+                        cnt++;
+                    } else {
+                        playertwo.moveUp();
+                        cnt--;
+                    }
+                    break;
+                case "s":
+                    if (cnt == 1) {
+                        playerone.moveDown();
+                        cnt++;
+                    } else {
+                        playertwo.moveDown();
+                        cnt--;
+                    }
+                    break;
+                case "a":
+                    if (cnt == 1) {
+                        playerone.moveLeft();
+                        cnt++;
+                    } else {
+                        playertwo.moveLeft();
+                        cnt--;
+                    }
+                    break;
+                case "d":
+                    if (cnt == 1) {
+                        playerone.moveRight();
+                        cnt++;
+                    } else {
+                        playertwo.moveRight();
+                        cnt--;
+                        break;
+                    }
+                case "q":
+                    System.exit(0);
+                    break;
+                default:
+                    new Wall(move);
+            }
 
-//        System.out.println(board.grid); //test
-        System.out.println(board);
-        System.out.println(Node.getNodeByName(84).isPlayerIsHere());
-        String one = "10h";
-        String two = "11v";
-        playerone.setLocation(Node.getNodeByName(1));
-        Wall wall = new Wall(one);
-        Wall wall2 = new Wall(two);
-        Wall wall3 = new Wall("74v");
-        System.out.println(Node.getNodeByName(74).neighbors);
-//        System.out.println(Node.getNodeByName(84).moveUp());
-        playertwo.moveUp();
-//        playertwo.moveRight();
-        System.out.println(playertwo.getLocation());
-        System.out.println(Wall.wallsplaced);
-        System.out.println(Node.getNodeByName(74).isPlayerIsHere());
-        System.out.println(Node.getNodeByName(1).isPlayerIsHere());
-
+        }
     }
+
 }
 
 
