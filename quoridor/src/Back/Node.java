@@ -15,16 +15,10 @@ public class Node {
     public Node(int i, int j) {
         this.j = j;
         this.i = i;
-        if (i != -2 && j != -2) {
-            nodes.add(this);
-        }
+        nodes.add(this);
+
     }
 
-    public Node(int m) {
-        this.i = m / 10;
-        this.j = m % 10;
-        nodes.add(this);
-    }
 
     public static Node getNodeByName(int m) {
         return getNodeByCoordinates(m / 10, m % 10);
@@ -47,8 +41,6 @@ public class Node {
             p.getLocation().playerIsHere = true;
         }
     }
-
-
 
 
     public int getJ() {
