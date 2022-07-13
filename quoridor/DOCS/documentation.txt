@@ -1,6 +1,6 @@
 QUORIDOR
 
-متاسفانه ما نتوانستیم این بازی را بصورت تصویری نمایش دهیم اما منطق بازی منطق درستی می باشد.
+
 
 The board is in the shape of a matrix (top left node is (0,0) and increases to the left) and operates like a graph. every node(vertice) has an adjacency list
 that contains the neighbors to that node.
@@ -10,12 +10,12 @@ Every wall has a start node and an allignment:
     Vertical walls:
         if a wall is veritcal and has a starting node of (i,j), it will cut the connections :
         (i,j) & (i, j+1)
-        (i-1,j) & (i-1,j+1)
+        (i-1,j) & (i-1,j+1) #54v
 
     Horizontal walls:
         if a wall is horizontal and has a starting node of (i,j) then it will cut off the connections:
         (i,j) & (i-1,j)
-        (i,j+1) & (i-1, j+1)
+        (i,j+1) & (i-1, j+1) #24h
 
     we name the nodes in multiple ways:
         a- coordinates: (i,j)
@@ -52,6 +52,7 @@ Classes:
             . boolean isNeighbor(Node n) : checks if this has a direct connection to n (a wall may cut the connection)
             . boolean isPlayerHere() : returns true if this node has a player on it
             . boolean hasPath(String [top OR bottom]) : true if this node has a path to the nodes related to the String
+            . setPlayerisHere() turns all nodes false except those that are equal to the player's getlocation()
 
     Wall:
         Attributes:
@@ -61,9 +62,29 @@ Classes:
 
         Methods:
             . boolean isLegal() checks if placing a wall is legal or not
-            . void placeWall() places a wall
-            . void removeWall() removes a wall
-            .
+            . void placeWall() places a wall by removing the neighbors
+            . void removeWall() removes a wall by adding the nighbors back
+
+    Player:
+        Attributes:
+            - name
+            - goal :going towards which end
+            - location: it's current node
+            - wallsremaining
+
+        methods:
+            moving methods: they use the moving methods of the Node class
+            haspath() : uses node.haspath(string)
+            islegalWalk(Node n): checks if the player can move there
+
+
+    Board:
+        ATRR:
+            grid: the nodes
+
+
+
+
 
 
 

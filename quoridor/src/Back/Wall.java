@@ -7,11 +7,11 @@ public class Wall {
     public static ArrayList<Wall> wallsplaced = new ArrayList<>();
     //    default wall:
     private final Node start;
-    private final String allign;
+    private final String allign; //h or v
 
     public Wall(Node start, String allign) { // constructor
         this.start = start;
-        this.allign = allign;
+        this.allign = allign; //h or v
         if (this.islegal()) this.placeWall(); //places wall as soon as it is built after checking that it is legal
     }
 
@@ -21,6 +21,14 @@ public class Wall {
         this.allign = split[2];
         if (this.islegal()) this.placeWall(); //places wall as soon as it is built after checking that it is legal
         else System.out.println("ILLEGAL WALL");
+    }
+    public static Wall getWallWithName(String name){
+        for(Wall w : wallsplaced){
+            if((w.getStart().getI()+""+w.getStart().getJ()+""+w.allign).equals(name)){
+                return w;
+            }
+        }
+        return null;
     }
 
     @Override

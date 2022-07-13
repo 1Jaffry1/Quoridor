@@ -1,6 +1,0 @@
-//this is the file to write to and read from
-//player one name
-//player two name
-//player one position
-//player two position
-//walls: 1v, 3h, 7v, 9v, ...

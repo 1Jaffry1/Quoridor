@@ -6,23 +6,24 @@ public class Run {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Board board = new Board();
-        System.out.println("Welcome to QUORIDOR!\nChoose a mode: new or load");
         int cnt = 1; //oscillates between 1 and 2
-        Player playerone = new Player("mohammad", "bottom"); //he starts at the top //4
-        Player playertwo = new Player("ali", "top"); // he starts at the bottom //84
+        Player playerone = new Player("PlayerOne", "bottom"); //he starts at the top //4
+        Player playertwo = new Player("PlayerTwo", "top"); // he starts at the bottom //84
         Game game = new Game("game1", null, playerone, playertwo);
         game.win = false;
+        System.out.println("Welcome to QUORIDOR!\nChoose a mode: new or load");
 
         do {
-            if (cnt ==1) System.out.println(playerone.getName()+"'s turn");
-            else System.out.println(playertwo.getName()+"'s turn");
             String move = scanner.nextLine();
+            if (cnt ==2) System.out.println("--------"+playerone.getName()+"'s turn---------");
+            else System.out.println("--------"+playertwo.getName()+"'s turn----------");
             switch (move) {
                 case "new":
                     System.out.println("Player one's name: ");
                     playerone.setName(scanner.nextLine());
                     System.out.println("Player two's name: ");
                     playertwo.setName(scanner.nextLine());
+                    break;
                 case "save":
                     String name = scanner.nextLine();
                     game.save(name);
@@ -106,12 +107,14 @@ public class Run {
                         System.out.println("WHAT IS THIS");
                         break;
                     }
-                    if (cnt == 1) {
-                        playerone.setWallsRemaining(playerone.getWallsRemaining() - 1);
-                        cnt++;
-                    } else if (cnt == 2) {
-                        playertwo.setWallsRemaining(playertwo.getWallsRemaining() - 1);
-                        cnt--;
+                    if (Wall.wallsplaced.contains(Wall.getWallWithName(move))) {
+                        if (cnt == 1) {
+                            playerone.setWallsRemaining(playerone.getWallsRemaining() - 1);
+                            cnt++;
+                        } else if (cnt == 2) {
+                            playertwo.setWallsRemaining(playertwo.getWallsRemaining() - 1);
+                            cnt--;
+                        }
                     }
                     break;
             }

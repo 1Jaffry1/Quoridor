@@ -3,129 +3,108 @@
   <ID>JAVA</ID>
   <OriginalElement>Back</OriginalElement>
   <nodes>
-    <node x="-25.82311320754718" y="1361.0">Back.Board</node>
-    <node x="311.74056603773585" y="1631.0">Back.Run</node>
-    <node x="454.0518867924528" y="1419.0">Back.IOF</node>
-    <node x="-51.0" y="-15.0">Back.Node</node>
-    <node x="336.75" y="669.0">Back.Wall</node>
-    <node x="79.75" y="577.0">Back.Player</node>
-    <node x="37.80188679245282" y="1089.0">Back.Game</node>
+    <node x="-51.0" y="1002.0">Back.IOF</node>
+    <node x="95.125" y="444.0">Back.Player</node>
+    <node x="359.32352941176475" y="501.5">Back.Wall</node>
+    <node x="601.4963235294118" y="562.0">Back.Board</node>
+    <node x="411.0" y="1013.5">Back.Run</node>
+    <node x="408.82352941176475" y="-15.0">Back.Node</node>
+    <node x="186.22058823529414" y="836.0">Back.Game</node>
   </nodes>
   <notes />
   <edges>
+    <edge source="Back.IOF" target="Back.Player" relationship="CREATE">
+      <point x="0.0" y="-52.0" />
+      <point x="170.00000000000003" y="971.0" />
+      <point x="40.95220588235293" y="971.0" />
+      <point x="40.95220588235293" y="805.0" />
+      <point x="153.125" y="805.0" />
+      <point x="-58.0" y="170.0" />
+    </edge>
     <edge source="Back.Run" target="Back.Wall" relationship="CREATE">
-      <point x="0.0" y="-39.5" />
-      <point x="399.74056603773585" y="1605.0" />
-      <point x="433.0518867924528" y="1605.0" />
-      <point x="433.0518867924528" y="1047.0" />
-      <point x="457.75" y="1047.0" />
-      <point x="0.0" y="132.0" />
+      <point x="0.0" y="-40.5" />
+      <point x="499.0" y="961.0" />
+      <point x="596.5" y="961.0" />
+      <point x="596.5" y="815.0" />
+      <point x="446.32352941176475" y="815.0" />
+      <point x="0.0" y="112.5" />
     </edge>
     <edge source="Back.IOF" target="Back.Game" relationship="CREATE">
-      <point x="0.0" y="-51.0" />
-      <point x="680.0518867924528" y="1339.0" />
-      <point x="443.5518867924528" y="1339.0" />
-      <point x="443.5518867924528" y="1329.0" />
-      <point x="314.5518867924528" y="1329.0" />
-      <point x="92.25" y="109.0" />
-    </edge>
-    <edge source="Back.Board" target="Back.Game" relationship="TO_ONE">
-      <point x="49.5" y="-109.0" />
-      <point x="122.67688679245282" y="1339.0" />
-      <point x="45.81367924528297" y="1339.0" />
-      <point x="45.81367924528297" y="1329.0" />
-      <point x="130.05188679245282" y="1329.0" />
-      <point x="-92.25" y="109.0" />
-    </edge>
-    <edge source="Back.Run" target="Back.Player" relationship="CREATE">
-      <point x="0.0" y="-39.5" />
-      <point x="399.74056603773585" y="1605.0" />
-      <point x="916.5518867924527" y="1605.0" />
-      <point x="916.5518867924528" y="1067.0" />
-      <point x="765.438679245283" y="1067.0" />
-      <point x="765.438679245283" y="1057.0" />
-      <point x="257.5" y="1057.0" />
-      <point x="59.25" y="224.0" />
-    </edge>
-    <edge source="Back.IOF" target="Back.Player" relationship="CREATE">
-      <point x="0.0" y="-51.0" />
-      <point x="680.0518867924528" y="1067.0" />
-      <point x="765.438679245283" y="1067.0" />
-      <point x="765.438679245283" y="1057.0" />
-      <point x="257.5" y="1057.0" />
-      <point x="59.25" y="224.0" />
+      <point x="0.0" y="-52.0" />
+      <point x="170.00000000000003" y="981.0" />
+      <point x="370.72058823529414" y="981.0" />
+      <point x="0.0" y="52.0" />
     </edge>
     <edge source="Back.Run" target="Back.Board" relationship="CREATE">
-      <point x="0.0" y="-39.5" />
-      <point x="399.74056603773585" y="1605.0" />
-      <point x="73.17688679245282" y="1605.0" />
-      <point x="0.0" y="109.0" />
+      <point x="0.0" y="-40.5" />
+      <point x="499.0" y="961.0" />
+      <point x="683.4963235294118" y="961.0" />
+      <point x="0.0" y="52.0" />
     </edge>
     <edge source="Back.Player" target="Back.Node" relationship="TO_ONE">
-      <point x="0.0" y="-224.0" />
-      <point x="198.25" y="556.0" />
-      <point x="179.24999999999997" y="556.0" />
-      <point x="179.24999999999997" y="546.0" />
-      <point x="177.75" y="546.0" />
-      <point x="76.25" y="270.0" />
+      <point x="0.0" y="-170.0" />
+      <point x="211.125" y="424.0" />
+      <point x="446.32352941176475" y="424.0" />
+      <point x="446.32352941176475" y="414.0" />
+      <point x="485.07352941176475" y="414.0" />
+      <point x="-76.25" y="204.5" />
+    </edge>
+    <edge source="Back.Run" target="Back.Player" relationship="CREATE">
+      <point x="0.0" y="-40.5" />
+      <point x="499.0" y="961.0" />
+      <point x="108.72058823529414" y="961.0" />
+      <point x="108.72058823529414" y="815.0" />
+      <point x="40.95220588235293" y="815.0" />
+      <point x="40.95220588235293" y="805.0" />
+      <point x="153.125" y="805.0" />
+      <point x="-58.0" y="170.0" />
     </edge>
     <edge source="Back.Run" target="Back.Game" relationship="CREATE">
-      <point x="0.0" y="-39.5" />
-      <point x="399.74056603773585" y="1605.0" />
-      <point x="443.5518867924528" y="1605.0" />
-      <point x="443.5518867924528" y="1329.0" />
-      <point x="314.5518867924528" y="1329.0" />
-      <point x="92.25" y="109.0" />
+      <point x="0.0" y="-40.5" />
+      <point x="499.0" y="971.0" />
+      <point x="370.72058823529414" y="971.0" />
+      <point x="0.0" y="52.0" />
     </edge>
     <edge source="Back.Board" target="Back.Node" relationship="TO_MANY">
-      <point x="49.5" y="-109.0" />
-      <point x="122.67688679245282" y="1339.0" />
-      <point x="45.81367924528297" y="1339.0" />
-      <point x="45.81367924528297" y="1329.0" />
-      <point x="27.30188679245282" y="1329.0" />
-      <point x="27.30188679245282" y="556.0" />
-      <point x="179.24999999999997" y="556.0" />
-      <point x="179.24999999999997" y="546.0" />
-      <point x="177.75" y="546.0" />
-      <point x="76.25" y="270.0" />
+      <point x="-41.0" y="-52.0" />
+      <point x="642.4963235294118" y="424.0" />
+      <point x="446.32352941176475" y="424.0" />
+      <point x="446.32352941176475" y="414.0" />
+      <point x="485.07352941176475" y="414.0" />
+      <point x="-76.25" y="204.5" />
     </edge>
     <edge source="Back.Game" target="Back.Wall" relationship="CREATE">
-      <point x="92.25" y="-109.0" />
-      <point x="314.5518867924528" y="1067.0" />
-      <point x="433.0518867924528" y="1067.0" />
-      <point x="433.0518867924528" y="1047.0" />
-      <point x="457.75" y="1047.0" />
-      <point x="0.0" y="132.0" />
+      <point x="92.25" y="-52.0" />
+      <point x="462.97058823529414" y="815.0" />
+      <point x="446.32352941176475" y="815.0" />
+      <point x="0.0" y="112.5" />
     </edge>
     <edge source="Back.Board" target="Back.Node" relationship="CREATE">
-      <point x="-49.5" y="-109.0" />
-      <point x="23.67688679245282" y="1339.0" />
-      <point x="16.30188679245282" y="1339.0" />
-      <point x="16.30188679245282" y="546.0" />
-      <point x="25.25" y="546.0" />
-      <point x="-76.25" y="270.0" />
+      <point x="41.0" y="-52.0" />
+      <point x="724.4963235294118" y="414.0" />
+      <point x="637.5735294117648" y="414.0" />
+      <point x="76.25" y="204.5" />
     </edge>
     <edge source="Back.Wall" target="Back.Node" relationship="TO_ONE">
-      <point x="0.0" y="-132.0" />
-      <point x="457.75" y="556.0" />
-      <point x="179.24999999999997" y="556.0" />
-      <point x="179.24999999999997" y="546.0" />
-      <point x="177.75" y="546.0" />
-      <point x="76.25" y="270.0" />
+      <point x="0.0" y="-112.5" />
+      <point x="446.32352941176475" y="414.0" />
+      <point x="485.07352941176475" y="414.0" />
+      <point x="-76.25" y="204.5" />
     </edge>
     <edge source="Back.Game" target="Back.Player" relationship="TO_ONE">
-      <point x="-92.25" y="-109.0" />
-      <point x="130.05188679245282" y="1067.0" />
-      <point x="139.0" y="1067.0" />
-      <point x="-59.25" y="224.0" />
+      <point x="-92.25" y="-52.0" />
+      <point x="278.47058823529414" y="815.0" />
+      <point x="269.125" y="815.0" />
+      <point x="58.0" y="170.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="0.2744985673352435" showDependencies="true" x="443.0" y="857.5" />
+  <settings layout="Hierarchic" zoom="0.2322524101665206" showDependencies="true" x="367.50000000000045" y="555.5" />
   <SelectedNodes />
   <Categories>
     <Category>Constructors</Category>
     <Category>Fields</Category>
     <Category>Methods</Category>
+    <Category>Properties</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

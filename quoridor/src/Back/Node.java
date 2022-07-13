@@ -100,7 +100,7 @@ public class Node {
     }
 
     public boolean isNeighbor(Node n) { //checks if this node is a neighbor of n
-        for (Node i : neighbors) {
+        for (Node i : this.neighbors) {
             if (i.equals(n)) return true;
         }
         return false;
