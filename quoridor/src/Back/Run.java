@@ -6,16 +6,38 @@ public class Run {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Board board = new Board();
-
-        Player playerone = new Player("mohammad", "bottom"); //he starts at the top //4
-        Player playertwo = new Player("ali", "top"); // he starts a// t the bottom //84
-        Game game = new Game("game1", null, playerone, playertwo);
-
+        System.out.println("Welcome to QUORIDOR!\nChoose a mode: start playing! or load");
         int cnt = 1; //oscillates between 1 and 2
-        Board.printboard();
-        while (!game.win) {
+        Player playerone = new Player("mohammad", "bottom"); //he starts at the top //4
+        Player playertwo = new Player("ali", "top"); // he starts at the bottom //84
+        Game game = new Game("game1", null, playerone, playertwo);
+        game.win = false;
+
+        do {
+            if (cnt ==1) System.out.println("Player one's turn");
+            else System.out.println("Player two's turn");
             String move = scanner.nextLine();
             switch (move) {
+                case "save":
+                    String name = scanner.nextLine();
+                    game.save(name);
+                    System.exit(0);
+                    break;
+
+                case "load":
+                    String name2 = scanner.nextLine();
+                    try {
+                        game = Game.load(name2);
+                        game.win = false;
+                    } catch (NullPointerException e) {
+                        System.out.println("No game found");
+//                        game = new Game("game1", null, playerone, playertwo);
+//                        game.win = true;
+                        System.exit(1);
+                    }
+                    break;
+
+
                 case "w":
                     if (cnt == 1 && playerone.isLegalWalk(playerone.getLocation().moveUp())) {
                         playerone.moveUp();
@@ -72,16 +94,6 @@ public class Run {
                     System.exit(0);
                     break;
 
-                case "save":
-                    String name = scanner.nextLine();
-                    game.save(name);
-                    System.out.println(Wall.wallsplaced);
-                    System.exit(0);
-                case "load":
-                    String name2 = scanner.nextLine();
-
-                    game.load(name2);
-                    break;
                 default:
                     try {
                         new Wall(move);
@@ -101,12 +113,19 @@ public class Run {
             if (Node.bottomNodes.contains(playerone.getLocation())) {
                 System.out.println("Player one wins!");
                 game.win = true;
-                game.winner = playerone;
+//                game.winner = playerone;
+
             } else if (Node.topNodes.contains(playertwo.getLocation())) {
                 System.out.println("Player two wins!");
                 game.win = true;
-                game.winner = playertwo;
+//                game.winner = playertwo;
             }
-        }
+            System.out.println("player one: " + playerone.getLocation());
+            System.out.println("player two: " + playertwo.getLocation());
+            System.out.println("player one's walls: " + playerone.getWallsRemaining());
+            System.out.println("player two's walls: " + playertwo.getWallsRemaining());
+            System.out.println(Wall.wallsplaced);
+
+        } while (!game.win);
     }
 }

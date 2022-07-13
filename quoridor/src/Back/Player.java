@@ -88,8 +88,8 @@ public class Player {
 
     public boolean isLegalWalk(Node n) {
         for (Node i : this.getLocation().neighbors) {
-            if (i.equals(n) && !i.isPlayerIsHere() && !this.getLocation().equals(n)) return true;
-            else if (i.isPlayerIsHere() && (n.getJ() == this.getLocation().getJ() + 2 || n.getI() == this.getLocation().getI() + 2) && i.isNeighbor(n))
+            if (i.equals(n) && !i.isPlayerHere() && !this.getLocation().equals(n)) return true;
+            else if (i.isPlayerHere() && (n.getJ() == this.getLocation().getJ() + 2 || n.getI() == this.getLocation().getI() + 2) && i.isNeighbor(n))
                 return true;
 //            else if (i.isPlayerIsHere() )
         }

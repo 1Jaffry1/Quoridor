@@ -20,7 +20,7 @@ public class Wall {
         this.start = Node.getNodeByCoordinates(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
         this.allign = split[2];
         if (this.islegal()) this.placeWall(); //places wall as soon as it is built after checking that it is legal
-
+        else System.out.println("ILLEGAL WALL");
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Wall {
         return "" + start.getI() + "" + start.getJ() + allign;
     }
 
-    public boolean islegal() { //needs to check if wall is legal ::: apparently it has issues???
+    public boolean islegal() { //heck if wall is legal to place
         for (Wall w : wallsplaced)
             if (this.equals(w) || this.start.equals(w.start)) return false; //wall exists already or crossing walls
         this.placeWall();
@@ -50,11 +50,11 @@ public class Wall {
         if (allign.equals("h")) {
             Node topnode = Node.getNodeByCoordinates(getStart().getI() - 1, getStart().getJ());
             if (topnode != null) {
-                this.start.neighbors.remove(topnode);
-                topnode.neighbors.remove(this.start);
+                start.neighbors.remove(topnode);
+                topnode.neighbors.remove(start);
             }
             Node rightnode = Node.getNodeByCoordinates(getStart().getI(), getStart().getJ() + 1);
-            assert rightnode != null;
+//            assert rightnode != null;
             Node topnode2 = Node.getNodeByCoordinates(rightnode.getI() - 1, rightnode.getJ());
             if (topnode2 != null) {
                 rightnode.neighbors.remove(topnode2);
@@ -64,7 +64,7 @@ public class Wall {
         } else if (allign.equals("v")) {
             Node Rightnode = Node.getNodeByCoordinates(getStart().getI(), getStart().getJ() + 1);
             if (Rightnode != null) {
-                this.start.neighbors.remove(Rightnode);
+                start.neighbors.remove(Rightnode);
                 Rightnode.neighbors.remove(this.start);
             }
             Node topnode = Node.getNodeByCoordinates(getStart().getI() - 1, getStart().getJ());
@@ -81,18 +81,18 @@ public class Wall {
         wallsplaced.remove(this);
         if (this.allign.equals("v")) {
             Node Rightnode = Node.getNodeByCoordinates(getStart().getI(), getStart().getJ() + 1);
-            assert Rightnode != null;
+//            assert Rightnode != null;
             this.start.neighbors.add(Rightnode);
             Node topnode = Node.getNodeByCoordinates(getStart().getI() - 1, getStart().getJ());
-            assert topnode != null;
+//            assert topnode != null;
             Node Rightnode2 = Node.getNodeByCoordinates(topnode.getI(), topnode.getJ() + 1); //node that is right to topnode
             topnode.neighbors.add(Rightnode2);
         } else if (this.allign.equals("h")) {
             Node topnode = Node.getNodeByCoordinates(getStart().getI() - 1, getStart().getJ());
-            assert topnode != null;
+//            assert topnode != null;
             this.start.neighbors.add(topnode);
             Node rightnode = Node.getNodeByCoordinates(getStart().getI(), getStart().getJ() + 1);
-            assert rightnode != null;
+//            assert rightnode != null;
             Node topnode2 = Node.getNodeByCoordinates(rightnode.getI() - 1, rightnode.getJ()); //topnode to the rightnode
             rightnode.neighbors.add(topnode2);
         }

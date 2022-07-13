@@ -1,0 +1,69 @@
+QUORIDOR
+
+متاسفانه ما نتوانستیم این بازی را بصورت تصویری نمایش دهیم اما منطق بازی منطق درستی می باشد.
+
+The board is in the shape of a matrix (top left node is (0,0) and increases to the left) and operates like a graph. every node(vertice) has an adjacency list
+that contains the neighbors to that node.
+
+Notation:
+Every wall has a start node and an allignment:
+    Vertical walls:
+        if a wall is veritcal and has a starting node of (i,j), it will cut the connections :
+        (i,j) & (i, j+1)
+        (i-1,j) & (i-1,j+1)
+
+    Horizontal walls:
+        if a wall is horizontal and has a starting node of (i,j) then it will cut off the connections:
+        (i,j) & (i-1,j)
+        (i,j+1) & (i-1, j+1)
+
+    we name the nodes in multiple ways:
+        a- coordinates: (i,j)
+        b- integer: number = 10* i + j ; #example: 43 -> (4,3); this will be the constructor mainly used due to its simplicity
+
+    we name the walls according to the node naming convention:
+        a- using start node and allignment : wall(getnodebycoordinates(i,j), allign)
+        b- using a String : 43h: startnode = (4,3); allign = h; this will be the constructor mainly used due to its simplicity
+
+    Moves:
+        In each turn you may either move or place a wall: we move using "wasd" keys
+            moving up: "w" key and it uses the method (Player).moveUp(), which in turn uses the method (Node.moveUp())
+            the rest of the keys are similar:
+            down: "s"
+            left : "d"
+            right : "a"
+
+
+        Wall placing: We may place a wall by using the 2nd method provided for creating walls and it may be
+            entered directly into the console ##example: 23h -> it creates a wall ((2,3),horizontal) and checks if it can be placed. if it can, it will place it
+
+
+
+
+
+Classes:
+    Node:
+        The most central class is the Node class. It governs the rest of the classes almost directly.
+        Attributes:
+            - boolean playerIsHere : shows wether or not a player is on this node
+        Methods:
+            . Node getNodeByName(int m) : it will return type Node using the name of the node (i.e 10*i + j)
+            . Node getNodeByCoordinates(int x, int y) : this method returns type Node using the coordinates of the node. it is very useful for walls
+            . boolean isNeighbor(Node n) : checks if this has a direct connection to n (a wall may cut the connection)
+            . boolean isPlayerHere() : returns true if this node has a player on it
+            . boolean hasPath(String [top OR bottom]) : true if this node has a path to the nodes related to the String
+
+    Wall:
+        Attributes:
+            - String start: already discussed
+            - String allign : already discussed
+            - wallsplaced: all walls that have been placed yet
+
+        Methods:
+            . boolean isLegal() checks if placing a wall is legal or not
+            . void placeWall() places a wall
+            . void removeWall() removes a wall
+            .
+
+
+

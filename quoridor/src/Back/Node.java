@@ -8,7 +8,6 @@ public class Node {
     public static ArrayList<Node> bottomNodes = new ArrayList<>();
     private final int j;
     private final int i;
-    public ArrayList<Node> visited = new ArrayList<>();
     public ArrayList<Node> neighbors = new ArrayList<>();
     private boolean playerIsHere;
 
@@ -56,7 +55,8 @@ public class Node {
         return i + "" + j;
     }
 
-    public boolean hasPath(String n) {
+    public boolean hasPath(String n) { //checks if there is a path from this node to the node with name n
+        ArrayList<Node> visited = new ArrayList<>();
         visited.add(this);
         for (int i = 0; i < visited.size(); i++) {
             for (Node neighbor : visited.get(i).neighbors) {
@@ -95,11 +95,11 @@ public class Node {
 
     }
 
-    public boolean isPlayerIsHere() {
+    public boolean isPlayerHere() {
         return playerIsHere;
     }
 
-    public boolean isNeighbor(Node n) {
+    public boolean isNeighbor(Node n) { //checks if this node is a neighbor of n
         for (Node i : neighbors) {
             if (i.equals(n)) return true;
         }

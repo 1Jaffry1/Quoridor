@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Game {
     public boolean win = false;
-    public Player winner;
+//    public Player winner;
     private String name;
     private Player player1;
     private Player player2;
@@ -24,10 +24,10 @@ public class Game {
 
 
     public void save(String gamename) {
-        IOF.writeToFile(gamename, player1.getName(), player2.getName(), player1.getLocation(), player2.getLocation(), player1.getWallsRemaining(), player2.getWallsRemaining(), winner);
+        IOF.writeToFile(gamename, player1.getName(), player2.getName(), player1.getLocation(), player2.getLocation(), player1.getWallsRemaining(), player2.getWallsRemaining()/*, winner*/);
     }
 
-    public void load(String gamename) {
-        IOF.readFromFile(gamename);
+    public static Game load(String gamename) {
+        return IOF.readFromFile(gamename);
     }
 }
