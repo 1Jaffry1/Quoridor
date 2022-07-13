@@ -6,7 +6,7 @@ public class Run {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Board board = new Board();
-        System.out.println("Welcome to QUORIDOR!\nChoose a mode: start playing! or load");
+        System.out.println("Welcome to QUORIDOR!\nChoose a mode: new or load");
         int cnt = 1; //oscillates between 1 and 2
         Player playerone = new Player("mohammad", "bottom"); //he starts at the top //4
         Player playertwo = new Player("ali", "top"); // he starts at the bottom //84
@@ -14,10 +14,15 @@ public class Run {
         game.win = false;
 
         do {
-            if (cnt ==1) System.out.println("Player one's turn");
-            else System.out.println("Player two's turn");
+            if (cnt ==1) System.out.println(playerone.getName()+"'s turn");
+            else System.out.println(playertwo.getName()+"'s turn");
             String move = scanner.nextLine();
             switch (move) {
+                case "new":
+                    System.out.println("Player one's name: ");
+                    playerone.setName(scanner.nextLine());
+                    System.out.println("Player two's name: ");
+                    playertwo.setName(scanner.nextLine());
                 case "save":
                     String name = scanner.nextLine();
                     game.save(name);
