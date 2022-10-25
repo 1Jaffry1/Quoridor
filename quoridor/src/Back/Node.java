@@ -18,7 +18,6 @@ public class Node {
 
     }
 
-
     public static Node getNodeByName(int m) {
         return getNodeByCoordinates(m / 10, m % 10);
     }

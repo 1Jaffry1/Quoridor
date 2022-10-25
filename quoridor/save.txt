@@ -1,5 +1,5 @@
 newgame1.game
-74h 
+74h 54v 21h
 mohammad
 ali
 24
@@ -22,3 +22,11 @@ lasdkjf
 84
 10
 10
+gameteset.game
+13v 56h 24h 
+1
+2
+04
+84
+8
+9
